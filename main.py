@@ -132,3 +132,47 @@
 # window.show()
 #
 # app.exec()
+# -------------------------------------------------------------------
+# QCheckBox - praporec
+#QComboBox - spisok sho vupadae
+#QDateEdit - redaguvanna datu
+#QDateTimeEdit - redavuvana datu ta chasu
+#QDial - kolesa slavik
+#QFontComboBox - spisok shriftiv
+#QDoubleSpinBox - redaguvanna cifr zavdaku strilochkam vgoru i vnuz
+#QLCDNumber - display
+#QLAbel - nadpis
+#QLIneEdit - vod textu
+#QProgresBar - indekator progresu
+# QPushButton - knopka
+# QRadioButton - radio knopka
+# QSlider - povzunok
+# QTimeEdit - redaguvanna chasu
+import sys
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (QApplication,QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,QFontComboBox,
+QLabel,QLCDNumber,QLineEdit,QMainWindow,QProgressBar,QPushButton,QRadioButton,QSlider,QSpinBox,QTimeEdit,QVBoxLayout,QWidget)
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow,self).__init__()
+        self.setWindowTitle("Widgets")
+        layout = QVBoxLayout()
+        widgets = [QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,
+        QFontComboBox,QLabel,QLCDNumber,QLineEdit,
+        QProgressBar,QPushButton,QRadioButton,QSlider,
+        QSpinBox,QTimeEdit]
+        for i in widgets :
+            layout.addWidget(i())
+
+            widget = QWidget()
+            widget.setLayout(layout)
+            self.setCentralWidget(widget)
+
+
+app = QApplication(sys.argv)
+
+window = MainWindow()
+window.show()
+
+
+app.exec()
