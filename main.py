@@ -148,31 +148,116 @@
 # QRadioButton - radio knopka
 # QSlider - povzunok
 # QTimeEdit - redaguvanna chasu
-import sys
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (QApplication,QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,QFontComboBox,
-QLabel,QLCDNumber,QLineEdit,QMainWindow,QProgressBar,QPushButton,QRadioButton,QSlider,QSpinBox,QTimeEdit,QVBoxLayout,QWidget)
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super(MainWindow,self).__init__()
-        self.setWindowTitle("Widgets")
-        layout = QVBoxLayout()
-        widgets = [QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,
-        QFontComboBox,QLabel,QLCDNumber,QLineEdit,
-        QProgressBar,QPushButton,QRadioButton,QSlider,
-        QSpinBox,QTimeEdit]
-        for i in widgets :
-            layout.addWidget(i())
-
-            widget = QWidget()
-            widget.setLayout(layout)
-            self.setCentralWidget(widget)
-
-
-app = QApplication(sys.argv)
-
-window = MainWindow()
-window.show()
-
-
-app.exec()
+# -----------------------------------------------------------------------
+# import sys
+# from PyQt6.QtCore import Qt
+# from PyQt6.QtWidgets import (QApplication,QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,QFontComboBox,
+# QLabel,QLCDNumber,QLineEdit,QMainWindow,QProgressBar,QPushButton,QRadioButton,QSlider,QSpinBox,QTimeEdit,QVBoxLayout,QWidget)
+# class MainWindow(QMainWindow):
+#     def __init__(self):
+#         super(MainWindow,self).__init__()
+#         self.setWindowTitle("Widgets")
+#         layout = QVBoxLayout()
+#         widgets = [QCheckBox,QComboBox,QDateEdit,QDateTimeEdit,QDial,QDoubleSpinBox,
+#         QFontComboBox,QLabel,QLCDNumber,QLineEdit,
+#         QProgressBar,QPushButton,QRadioButton,QSlider,
+#         QSpinBox,QTimeEdit]
+#         for i in widgets :
+#             layout.addWidget(i())
+#
+#             widget = QWidget()
+#             widget.setLayout(layout)
+#             self.setCentralWidget(widget)
+#
+#
+# app = QApplication(sys.argv)
+#
+# window = MainWindow()
+# window.show()
+#
+#
+# app.exec()
+# ------------------------------------------------------------------------------
+# QListWidget
+# from PyQt6.QtWidgets import QListWidget,QComboBox,QMainWindow,QApplication,QWidget,QVBoxLayout
+# from PyQt6.QtGui import QIcon
+# import sys
+#
+# class MainWindow(QMainWindow):
+#     def __init__(self):
+#         super(MainWindow,self).__init__()
+#
+#         self.setWindowTitle('Proga')
+#
+#         input_1 = input(':')
+#         input_2 = input(':')
+#         input_3 =input(':')
+#         input_4 = input(':')
+#         input_5 = input(':')
+#
+#         widget = QListWidget()
+#         widget.addItem(input_1)
+#         widget.addItem(input_3)
+#         widget.addItem(input_4)
+#         widget.addItem(input_5)
+#         widget.currentItemChanged.connect(self.index_changed)
+#         widget.currentTextChanged.connect(self.text_changed)
+#
+#         widget.addItem(input_2)
+#
+#         self.setCentralWidget(widget)
+#     def index_changed(self,i):
+#         print(i.text())
+#
+#     def text_changed(self,s):
+#         print(s)
+#
+# app = QApplication(sys.argv)
+#
+# window = MainWindow()
+# window.show()
+#
+#
+# app.exec()
+# -------------------------------------------------------------------------------
+# QLineEdit
+# from PyQt6.QtWidgets import QLineEdit,QComboBox,QMainWindow,QApplication,QWidget,QVBoxLayout
+# from PyQt6.QtGui import QIcon
+# import sys
+# class MainWindow(QMainWindow):
+#     def __init__(self):
+#         super(MainWindow,self).__init__()
+#
+#         self.setWindowTitle('QLineEdit')
+#
+#         widget = QLineEdit()
+#         widget.setMaxLength(10)
+#         widget.setPlaceholderText('enter your text')
+#
+#         widget.returnPressed.connect(self.return_presed)
+#         widget.selectionChanged.connect(self.selection_changed)
+#         widget.textChanged.connect(self.text_changed)
+#         widget.textEdited.connect(self.text_edited)
+#
+#         self.setCentralWidget(widget)
+#
+#     def return_presed(self):
+#         print('Return pressed')
+#         self.centralWidget().setText('Text!')
+#     def selection_changed(self):
+#         print('Selection changed')
+#         print(self.centralWidget().selectedText())
+#     def text_changed(self,s):
+#         print('Changed')
+#         print(s)
+#     def text_edited(self,e):
+#         print('Edited')
+#         print(e)
+#
+# app = QApplication(sys.argv)
+#
+# window = MainWindow()
+# window.show()
+#
+#
+# app.exec()
