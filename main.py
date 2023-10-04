@@ -261,16 +261,173 @@
 #
 #
 # app.exec()
-import time
-def countdown(user_time):
-    print("Starting countdown")
-    while user_time >= 0:
-        mins,secs = divmod(user_time,60)
-        timer = '{:02d}:{:02d}'.format(mins,secs)
-        print(timer,end='\r')
-        time.sleep(1)
-        user_time -= 1
-    print('Lift off')
-if __name__=='__main__':
-    user_time_1 = int(input("Enter a time in seconds:"))
-    countdown(user_time_1)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# import time
+# def countdown(user_time):
+#     print("Starting countdown")
+#     while user_time >= 0:
+#         mins,secs = divmod(user_time,60)
+#         timer = '{:02d}:{:02d}'.format(mins,secs)
+#         print(timer,end='\r')
+#         time.sleep(1)
+#         user_time -= 1
+#     print('Lift off')
+# if __name__=='__main__':
+#     user_time_1 = int(input("Enter a time in seconds:"))
+#     countdown(user_time_1)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import sys
+from PyQt6.QtWidgets import (QMainWindow,
+QApplication,
+QLabel,
+QToolBar,
+QStatusBar,
+QCheckBox,
+QSlider,
+QGridLayout,
+QWidget,
+QDial)
+from PyQt6.QtGui import QAction, QIcon, QPixmap
+from PyQt6.QtCore import Qt, QSize
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.setWindowTitle('Programka')
+
+
+
+
+        toolbar = QToolBar('My main ToolBar')
+        toolbar.setIconSize(QSize(16,16))
+        self.addToolBar(toolbar)
+
+        button_action4 = QAction('Файл', self)
+        button_action4.setStatusTip('This is yout button')
+        button_action4.triggered.connect(self.open_file_window)
+        button_action4.setCheckable(True)
+        toolbar.addAction(button_action4)
+
+        button_action=QAction(QIcon('File_Explorer_23583.png'), 'Your button', self)
+        button_action.setStatusTip('This is your button')
+        button_action.triggered.connect(self.onMyToolBarButtonClick)
+        button_action.setCheckable(True)
+        toolbar.addAction(button_action)
+
+        toolbar.addSeparator()
+
+        button_action2 = QAction(QIcon('arrow_double_left_15739.png'), 'Your &button2', self)
+        button_action2.setStatusTip('This is your button')
+        button_action2.triggered.connect(self.onMyToolBarButtonClick)
+        button_action2.setCheckable(True)
+        toolbar.addAction(button_action2)
+
+        button_action5 = QAction(QIcon('PauseHot_26935.png'), 'Your &button2', self)
+        button_action5.setStatusTip('This is your button')
+        button_action5.triggered.connect(self.onMyToolBarButtonClick)
+        button_action5.setCheckable(True)
+        toolbar.addAction(button_action5)
+
+        button_action3 = QAction(QIcon('arrow_double_right_15738.png'), 'Your &button2', self)
+        button_action3.setStatusTip('This is your button')
+        button_action3.triggered.connect(self.onMyToolBarButtonClick)
+        button_action3.setCheckable(True)
+        toolbar.addAction(button_action3)
+
+
+
+        button_action6 = QAction('Редагування', self)
+        button_action6.setStatusTip('This is yout button')
+        button_action6.triggered.connect(self.onMyToolBarButtonClick)
+        button_action6.setCheckable(True)
+        toolbar.addAction(button_action6)
+
+        button_action7 = QAction('Справка', self)
+        button_action7.setStatusTip('This is yout button')
+        button_action7.triggered.connect(self.open_info_window)
+        button_action7.setCheckable(True)
+        toolbar.addAction(button_action7)
+
+        widget = QLabel()
+
+        widget.setPixmap(QPixmap('Без названия.jpg'))
+# widget.setFixedSize(700, 500)
+        widget.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        widget_1 = QLabel('One-Metallica')
+        widget_1.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        widget_2 = QSlider()
+        widget_2.setMaximum(10)
+        widget_2.setMinimum(-10)
+        widget_2 = QSlider(Qt.Orientation.Horizontal)
+
+        widget_5 = QLabel(
+        '0:00 2:55')
+        widget_5.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        widget_3 = QDial()
+        widget_3.setRange(1, 100)
+        widget_3.setSingleStep(1)
+
+        widget_4 = QSlider()
+        widget_4.setMaximum(10)
+        widget_4.setMinimum(-10)
+
+        layout = QGridLayout()
+
+        layout.addWidget(widget)
+        layout.addWidget(widget_1 )
+        layout.addWidget(widget_2)
+        layout.addWidget(widget_5)
+        layout.addWidget(widget_3, 4, 0)
+        layout.addWidget(widget_4, 4,1)
+
+        container = QWidget()
+        container.setLayout(layout)
+
+        self.setCentralWidget(container)
+    def onMyToolBarButtonClick(self, s):
+        print('click', s)
+
+
+    def open_file_window(self):
+        self.file_window = FileWindow()
+        self.file_window.show()
+
+    def open_info_window(self):
+        self.info_window = InfoWindow()
+        self.info_window.show()
+
+class FileWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("File window")
+        self.setGeometry(100, 100, 400, 200)
+
+        label = QLabel('Здорова', self)
+        label.setAlignment(Qt.AlignmentFlag.AlignLeft)
+
+        layout2 = QGridLayout()
+        layout2.addWidget(label, 2, 2)
+
+
+class InfoWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Info window")
+        self.setGeometry(400, 400, 800, 600)
+
+        label = QLabel('Info', self)
+        label.setAlignment(Qt.AlignmentFlag.AlignLeft)
+
+        layout = QGridLayout()
+        layout.addWidget(label, 2, 2)
+
+
+
+app = QApplication(sys.argv)
+w=MainWindow()
+w.show()
+app.exec()
